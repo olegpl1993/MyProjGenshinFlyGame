@@ -1,0 +1,95 @@
+@import url("nullstyle.css");
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.topRow {
+  height: 50px;
+  border: 1px solid red;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.topRow__col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.topRow__star,
+.topRow__mora {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.topRow__qStar,
+.topRow__qMora {
+  font-size: 40px;
+  color: white;
+  margin-left: 10px;
+}
+
+.topRow__mora {
+  margin-left: 30px;
+}
+
+.topRow__buttonStart {
+  margin-right: 10px;
+  height: 30px;
+  width: 150px;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 25px;
+  padding-top: 2px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  color: black;
+}
+
+.topRow__buttonStart:hover {
+  background-color: red;
+  border: 1px solid white;
+  color: black;
+}
+
+.topRow__buttonStart:active {
+  background-color: red;
+  border: 1px solid white;
+  color: white;
+}
+
+#canvas {
+  border: 1px solid red;
+}
+
+.lastRow {
+  height: 50px;
+  border: 1px solid red;
+  background-color: black;
+}

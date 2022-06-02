@@ -1,0 +1,78 @@
+@import url("nullstyle.css");
+
+* {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.topRow {
+    height: 50px;
+    border: 1px solid red;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.topRow__col {
+    display: flex;
+    align-items: center;
+}
+
+.topRow__star,
+.topRow__mora {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+.topRow__qStar,
+.topRow__qMora {
+    font-size: 40px;
+    color: white;
+    margin-left: 10px;
+}
+.topRow__mora {
+    margin-left: 30px;
+}
+
+.topRow__buttonStart {
+    margin-right: 10px;
+    height: 30px;
+    width: 150px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+.topRow__buttonStart:hover {
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+.topRow__buttonStart:active {
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+#canvas {
+    border: 1px solid red;
+}
+
+.lastRow {
+    height: 50px;
+    border: 1px solid red;
+    background-color: black;
+}
