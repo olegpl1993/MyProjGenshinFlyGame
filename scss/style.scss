@@ -6,6 +6,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    overflow: hidden;
 }
 
 .wrapper {
@@ -15,7 +16,6 @@
 
 .topRow {
     height: 50px;
-    border: 1px solid red;
     background-color: black;
     display: flex;
     align-items: center;
@@ -26,14 +26,12 @@
     align-items: center;
 }
 
-.topRow__star,
-.topRow__mora {
+.topRow__star, .topRow__mora {
     width: 40px;
     height: 40px;
     margin-left: 10px;
 }
-.topRow__qStar,
-.topRow__qMora {
+.topRow__qStar, .topRow__qMora {
     font-size: 40px;
     color: white;
     margin-left: 10px;
@@ -67,12 +65,33 @@
     color: rgb(255, 255, 255);
 }
 
-#canvas {
-    border: 1px solid red;
-}
-
 .lastRow {
     height: 50px;
-    border: 1px solid red;
     background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button {
+    height: 40px;
+    width: 23%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+.button:hover {
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+.button:active {
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }

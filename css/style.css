@@ -4,6 +4,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -17,7 +18,6 @@
 
 .topRow {
   height: 50px;
-  border: 1px solid red;
   background-color: black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -39,15 +39,13 @@
           align-items: center;
 }
 
-.topRow__star,
-.topRow__mora {
+.topRow__star, .topRow__mora {
   width: 40px;
   height: 40px;
   margin-left: 10px;
 }
 
-.topRow__qStar,
-.topRow__qMora {
+.topRow__qStar, .topRow__qMora {
   font-size: 40px;
   color: white;
   margin-left: 10px;
@@ -84,12 +82,40 @@
   color: white;
 }
 
-#canvas {
-  border: 1px solid red;
-}
-
 .lastRow {
   height: 50px;
-  border: 1px solid red;
   background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.button {
+  height: 40px;
+  width: 23%;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  color: black;
+}
+
+.button:hover {
+  background-color: red;
+  border: 1px solid white;
+  color: black;
+}
+
+.button:active {
+  background-color: red;
+  border: 1px solid white;
+  color: white;
 }

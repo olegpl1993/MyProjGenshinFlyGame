@@ -13,6 +13,7 @@
 <body>
     <div class="wrapper">
         <div class="gameBox">
+
             <div class="topRow">
                 <div class="topRow__col">
                     <img class="topRow__star" src="img/star.png" alt="star">
@@ -22,8 +23,15 @@
                 </div>
                 <div class="topRow__buttonStart">START</div>
             </div>
-            <canvas id="canvas" width="1000px" height="800px"></canvas>
-            <div class="lastRow"></div>
+
+            <div class="canvasBox"></div>
+
+            <div class="lastRow">
+                <div id="buttonLeft" class="button">←</div>
+                <div id="buttonUp" class="button">↑</div>
+                <div id="buttonDown" class="button">↓</div>
+                <div id="buttonRight" class="button">→</div>
+            </div>
         </div>
         <script src="js/script.js"></script>
     </div>
