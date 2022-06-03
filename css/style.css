@@ -83,7 +83,7 @@
 }
 
 .lastRow {
-  height: 50px;
+  height: 60px;
   background-color: black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -96,7 +96,7 @@
 }
 
 .button {
-  height: 40px;
+  height: 50px;
   width: 23%;
   background-color: white;
   border: 1px solid red;

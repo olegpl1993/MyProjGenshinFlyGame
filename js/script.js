@@ -8,7 +8,7 @@ if (cWidth > 1000) {
     document.querySelector(".lastRow").style.display = 'none';
 }
 else {
-    document.querySelector(".canvasBox").innerHTML = `<canvas id="canvas" width="${cWidth}px" height="${cHight - 104}px"></canvas>`;
+    document.querySelector(".canvasBox").innerHTML = `<canvas id="canvas" width="${cWidth}px" height="${cHight - 114}px"></canvas>`;
     mobileMod = true;
 }
 
@@ -93,52 +93,52 @@ document.addEventListener('keyup', () => { //отпустив кнопку во�
     st = 0;
 });
 
-//управление персонажем кнопками -------------------------
+//управление персонажем кнопками на сенсоре -------------------------
 let mouseClickTimer; // таймер зажатой кнопки
 
 //кнопка вверх
-document.getElementById("buttonUp").addEventListener("mousedown", function clickUP() {
+document.getElementById("buttonUp").addEventListener("touchstart", function clickUP() {
     if (yPos > 0) { //проверка размера игрового поля
         yPos -= 20;
     }
     mouseClickTimer = setTimeout(clickUP, 35); //повторяет действия пока не отпустят кнопку
 });
-document.getElementById("buttonUp").addEventListener("mouseup", () => {
-    clearTimeout(mouseClickTimer);
+document.getElementById("buttonUp").addEventListener("touchend", () => {
+    clearTimeout(mouseClickTimer); //останавливает повтор действия
 });
 //кнопка вправо
-document.getElementById("buttonRight").addEventListener("mousedown", function clickRight() {
+document.getElementById("buttonRight").addEventListener("touchstart", function clickRight() {
     if (xPos < gameWidth - flyr.width) { //проверка размера игрового поля
         xPos += 20;
         st = 1; //картинка для отрисовки вправо
     }
     mouseClickTimer = setTimeout(clickRight, 35); //повторяет действия пока не отпустят кнопку
 });
-document.getElementById("buttonRight").addEventListener("mouseup", () => {
-    st = 0;
-    clearTimeout(mouseClickTimer);
+document.getElementById("buttonRight").addEventListener("touchend", () => {
+    st = 0; //возвращает стандарную картинку персонажа
+    clearTimeout(mouseClickTimer); //останавливает повтор действия
 });
 //кнопка вниз
-document.getElementById("buttonDown").addEventListener("mousedown", function clickDown() {
+document.getElementById("buttonDown").addEventListener("touchstart", function clickDown() {
     if (yPos < gameHeight - flyr.height) { //проверка размера игрового поля
         yPos += 20;
     }
     mouseClickTimer = setTimeout(clickDown, 35); //повторяет действия пока не отпустят кнопку
 });
-document.getElementById("buttonDown").addEventListener("mouseup", () => {
-    clearTimeout(mouseClickTimer);
+document.getElementById("buttonDown").addEventListener("touchend", () => {
+    clearTimeout(mouseClickTimer); //останавливает повтор действия
 });
 //кнопка влево
-document.getElementById("buttonLeft").addEventListener("mousedown", function clickLeft() {
+document.getElementById("buttonLeft").addEventListener("touchstart", function clickLeft() {
     if (xPos > 0) { //проверка размера игрового поля
         xPos -= 20;
         st = 2; //картинка для отрисовки влево
     }
     mouseClickTimer = setTimeout(clickLeft, 35); //повторяет действия пока не отпустят кнопку
 });
-document.getElementById("buttonLeft").addEventListener("mouseup", () => {
-    st = 0;
-    clearTimeout(mouseClickTimer);
+document.getElementById("buttonLeft").addEventListener("touchend", () => {
+    st = 0; //возвращает стандарную картинку персонажа
+    clearTimeout(mouseClickTimer); //останавливает повтор действия
 });
 //----------------------------------------------------------------------------------------------
 
