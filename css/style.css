@@ -76,6 +76,10 @@
   color: white;
 }
 
+#canvas {
+  background-image: url("../img/bg.jpg");
+}
+
 .lastRow {
   height: 60px;
   background-color: black;

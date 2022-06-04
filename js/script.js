@@ -25,12 +25,12 @@ let barrier = new Image(); //препятствие
 let star = new Image(); //звезда
 let mora = new Image(); //мора
 
-if (mobileMod) {
+if (mobileMod) { //подключение мобильных картинок
     flyr.src = "./img/Sfishel.png";
     flyr1.src = "./img/Sfishel1.png";
     flyr2.src = "./img/Sfishel2.png";
 }
-else {
+else { //подключение стандартных картинок
     flyr.src = "./img/Lfishel.png";
     flyr1.src = "./img/Lfishel1.png";
     flyr2.src = "./img/Lfishel2.png";
@@ -59,95 +59,113 @@ let moras = {};
 let qmora; //количество собраной моры
 //скорость падения бомбы
 let bombSpeed;
-//------------------------------------------------------------------------------------------------------------------
+//управление персонажем---------------------------------
 let st = 0; //определяет отрисовку персонажа движения 0 ровно, 1 вправо, 2 влево
+let moveUp = false;  //направление движения персонажа
+let moveRight = false; //направление движения персонажа
+let moveDown = false; //направление движения персонажа
+let moveLeft = false; //направление движения персонажа
 
-//управление персонажем клавиатура------------------------------------------
-document.addEventListener("keydown", (e) => {
-    switch (e.code) {  // проверка нажатой кнопки
-        case "ArrowUp": //вверх
-            if (yPos > 0) { //проверка размера игрового поля
-                yPos -= 20;
-            }
-            break;
-        case "ArrowRight": //вправо
-            if (xPos < gameWidth - flyr.width) { //проверка размера игрового поля
-                xPos += 20;
-                st = 1; //картинка для отрисовки вправо
-            }
-            break;
-        case "ArrowDown": //вниз
-            if (yPos < gameHeight - flyr.height) { //проверка размера игрового поля
-                yPos += 20;
-            }
-            break;
-        case "ArrowLeft": //влево
-            if (xPos > 0) { //проверка размера игрового поля
-                xPos -= 20;
-                st = 2; //картинка для отрисовки влево
-            }
-            break;
+function move() { //движение персонажа
+    yPos += 1; //движение вниз (постоянное падение)
+
+    if (moveUp == true && yPos > 0) { //проверка нажатой кнопки и размера игрового поля
+        yPos -= 6; //скорость движение вперед
     }
-});
-document.addEventListener('keyup', () => { //отпустив кнопку возвращает стандартную картинку
-    st = 0;
-});
-
-//управление персонажем кнопками на сенсоре -------------------------
-let mouseClickTimer; // таймер зажатой кнопки
-
-//кнопка вверх
-document.getElementById("buttonUp").addEventListener("touchstart", function clickUP() {
-    if (yPos > 0) { //проверка размера игрового поля
-        yPos -= 20;
-    }
-    mouseClickTimer = setTimeout(clickUP, 35); //повторяет действия пока не отпустят кнопку
-});
-document.getElementById("buttonUp").addEventListener("touchend", () => {
-    clearTimeout(mouseClickTimer); //останавливает повтор действия
-});
-//кнопка вправо
-document.getElementById("buttonRight").addEventListener("touchstart", function clickRight() {
-    if (xPos < gameWidth - flyr.width) { //проверка размера игрового поля
-        xPos += 20;
+    if (moveRight == true && xPos < gameWidth - flyr.width) { //проверка нажатой кнопки и размера игрового поля
+        xPos += 10; //скорость движение вправо
         st = 1; //картинка для отрисовки вправо
     }
-    mouseClickTimer = setTimeout(clickRight, 35); //повторяет действия пока не отпустят кнопку
-});
-document.getElementById("buttonRight").addEventListener("touchend", () => {
-    st = 0; //возвращает стандарную картинку персонажа
-    clearTimeout(mouseClickTimer); //останавливает повтор действия
-});
-//кнопка вниз
-document.getElementById("buttonDown").addEventListener("touchstart", function clickDown() {
-    if (yPos < gameHeight - flyr.height) { //проверка размера игрового поля
-        yPos += 20;
+    if (moveDown == true && yPos < gameHeight - flyr.height) { //проверка нажатой кнопки и размера игрового поля
+        yPos += 5; //скорость движение назад
     }
-    mouseClickTimer = setTimeout(clickDown, 35); //повторяет действия пока не отпустят кнопку
-});
-document.getElementById("buttonDown").addEventListener("touchend", () => {
-    clearTimeout(mouseClickTimer); //останавливает повтор действия
-});
-//кнопка влево
-document.getElementById("buttonLeft").addEventListener("touchstart", function clickLeft() {
-    if (xPos > 0) { //проверка размера игрового поля
-        xPos -= 20;
+    if (moveLeft == true && xPos > 0) { //проверка нажатой кнопки и размера игрового поля
+        xPos -= 10; //скорость движение влево
         st = 2; //картинка для отрисовки влево
     }
-    mouseClickTimer = setTimeout(clickLeft, 35); //повторяет действия пока не отпустят кнопку
-});
-document.getElementById("buttonLeft").addEventListener("touchend", () => {
+    if (moveRight == true && moveLeft == true ) { //проверка зажатых двух кнопок
+        st = 0; //возвращает стандарную картинку персонажа
+    }
+}
+function moveStopUp() {
+    moveUp = false;
+}
+function moveStopRight() {
+    moveRight = false;
     st = 0; //возвращает стандарную картинку персонажа
-    clearTimeout(mouseClickTimer); //останавливает повтор действия
-});
-//----------------------------------------------------------------------------------------------
+}
+function moveStopDown() {
+    moveDown = false;
+}
+function moveStopLeft() {
+    moveLeft = false;
+    st = 0; //возвращает стандарную картинку персонажа
+}
+//------------------------------------------------------------------------
 
+//управление кнопки на сенсоре ------------------------------------------
+//кнопка вверх
+document.getElementById("buttonUp").addEventListener("touchstart", () => {
+    moveUp = true;
+});
+document.getElementById("buttonUp").addEventListener("touchend", moveStopUp);
+//кнопка вправо
+document.getElementById("buttonRight").addEventListener("touchstart", () => {
+    moveRight = true;
+});
+document.getElementById("buttonRight").addEventListener("touchend", moveStopRight);
+//кнопка вниз
+document.getElementById("buttonDown").addEventListener("touchstart", () => {
+    moveDown = true;
+});
+document.getElementById("buttonDown").addEventListener("touchend", moveStopDown);
+//кнопка влево
+document.getElementById("buttonLeft").addEventListener("touchstart", () => {
+    moveLeft = true;
+});
+document.getElementById("buttonLeft").addEventListener("touchend", moveStopLeft);
+
+//управление клавиатура ------------------------------------------------------------------
+document.addEventListener("keydown", function keyboarddown(e) { //срабатывает при наэатии кнопки
+    switch (e.code) {  // проверка нажатой кнопки
+        case "ArrowUp": //вверх
+            moveUp = true;
+            break;
+        case "ArrowRight": //вправо
+            moveRight = true;
+            break;
+        case "ArrowDown": //вниз
+            moveDown = true;
+            break;
+        case "ArrowLeft": //влево
+            moveLeft = true;
+            break;
+    }
+});
+document.addEventListener("keyup", function keyboarddown(e) { //срабатывает при отпускании кнопки
+    switch (e.code) {  // проверка отпущеной кнопки
+        case "ArrowUp": //вверх
+            moveStopUp();
+            break;
+        case "ArrowRight": //вправо
+            moveStopRight();
+            break;
+        case "ArrowDown": //вниз
+            moveStopDown();
+            break;
+        case "ArrowLeft": //влево
+            moveStopLeft();
+            break;
+    }
+});
+//--------------------------------------------------------------------------------------------
 
 //отрисовка кадра (основная функция потока)-------------------------------------------
 function draw() {
-    //отрисовка фона
-    ctx.drawImage(bg, 0, 0);
-
+    //вызов функции движения персонажа
+    move();
+    //очистка фона
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
     //бомба-------------------------------------------------------------------------------
     ctx.drawImage(barrier, barriers.x, barriers.y); // отрисовка бомбы
     barriers.y += bombSpeed; //движение бомбы
@@ -158,7 +176,6 @@ function draw() {
             y: -100
         };
     }
-
     //звезда------------------------------------------------------------------------------------
     ctx.drawImage(star, stars.x, stars.y); //отрисовка звезды
     stars.y += 3; //движение звезды, больеше - быстрее
@@ -179,9 +196,7 @@ function draw() {
             y: -200
         };
     }
-
     //персонаж-----------------------------------------------------------------------------------
-    yPos += 1; //движение персонажа вниз (падение)
     if (st == 0) {
         ctx.drawImage(flyr, xPos, yPos); //картинка прямо
     }
@@ -191,9 +206,7 @@ function draw() {
     if (st == 2) {
         ctx.drawImage(flyr2, xPos, yPos); //картинка влево
     }
-
-    //------------------------------------------------------------------------------------
-    //таймер потока
+    //таймер потока----------------------------------------------------------------------------
     drawTimer = setTimeout(draw, drawSpeed);
     //проверка на столкновение и падение
     check();
@@ -236,7 +249,8 @@ function check() {
 
 //Остановка игры------------------------------------
 function stopGame() {
-    ctx.drawImage(bg, 0, 0);//очистка поля 
+    //очистка фона
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
     clearTimeout(drawTimer); //остановка потока
 }
 
