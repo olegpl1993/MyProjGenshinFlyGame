@@ -65,29 +65,3 @@
     background-image: url("../img/bg.jpg");
 }
 
-.lastRow {
-    height: 60px;
-    background-color: black;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.button {
-    height: 50px;
-    width: 23%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 0, 0);
-    border-radius: 5px;
-    text-align: center;
-    font-size: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 700;
-    color: rgb(0, 0, 0);
-}
-
-.button:active {
-    background-color: rgb(255, 0, 0);
-    border: 1px solid rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
-}

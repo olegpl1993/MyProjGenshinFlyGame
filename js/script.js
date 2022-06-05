@@ -5,10 +5,9 @@ let mobileMod = false;
 
 if (cWidth > 1000) {
     document.querySelector(".canvasBox").innerHTML = `<canvas id="canvas" width="1000px" height="${cHight - 52}px"></canvas>`;
-    document.querySelector(".lastRow").style.display = 'none';
 }
 else {
-    document.querySelector(".canvasBox").innerHTML = `<canvas id="canvas" width="${cWidth}px" height="${cHight - 114}px"></canvas>`;
+    document.querySelector(".canvasBox").innerHTML = `<canvas id="canvas" width="${cWidth}px" height="${cHight - 52}px"></canvas>`;
     mobileMod = true;
 }
 
@@ -70,20 +69,20 @@ function move() { //движение персонажа
     yPos += 1; //движение вниз (постоянное падение)
 
     if (moveUp == true && yPos > 0) { //проверка нажатой кнопки и размера игрового поля
-        yPos -= 6; //скорость движение вперед
+        yPos -= 5; //скорость движение вперед
     }
     if (moveRight == true && xPos < gameWidth - flyr.width) { //проверка нажатой кнопки и размера игрового поля
-        xPos += 10; //скорость движение вправо
+        xPos += 8; //скорость движение вправо
         st = 1; //картинка для отрисовки вправо
     }
     if (moveDown == true && yPos < gameHeight - flyr.height) { //проверка нажатой кнопки и размера игрового поля
-        yPos += 5; //скорость движение назад
+        yPos += 4; //скорость движение назад
     }
     if (moveLeft == true && xPos > 0) { //проверка нажатой кнопки и размера игрового поля
-        xPos -= 10; //скорость движение влево
+        xPos -= 8; //скорость движение влево
         st = 2; //картинка для отрисовки влево
     }
-    if (moveRight == true && moveLeft == true ) { //проверка зажатых двух кнопок
+    if (moveRight == true && moveLeft == true) { //проверка зажатых двух кнопок
         st = 0; //возвращает стандарную картинку персонажа
     }
 }
@@ -103,27 +102,31 @@ function moveStopLeft() {
 }
 //------------------------------------------------------------------------
 
-//управление кнопки на сенсоре ------------------------------------------
-//кнопка вверх
-document.getElementById("buttonUp").addEventListener("touchstart", () => {
-    moveUp = true;
+//экранное сенсорное управление-----------------------------------------------------------------------
+document.querySelector(".canvasBox").addEventListener("touchstart", (e) => { //при нажатии на сенсор
+    let x = e.changedTouches[0].clientX; //отслеживает координаты
+    let y = e.changedTouches[0].clientY; //отслеживает координаты
+    if (x < xPos) { //проверка направление движения
+        moveLeft = true;
+    }
+    if (x > xPos + flyr.width) { //проверка направление движения
+        moveRight = true;
+    }
+    if (y < yPos) { //проверка направление движения
+        moveUp = true;
+    }
+    if (y > yPos + flyr.height) { //проверка направление движения
+        moveDown = true;
+    }
 });
-document.getElementById("buttonUp").addEventListener("touchend", moveStopUp);
-//кнопка вправо
-document.getElementById("buttonRight").addEventListener("touchstart", () => {
-    moveRight = true;
+cvs.addEventListener("touchend", (e) => {  //при отпуске сенсора
+    //сброс направления движения
+    moveStopUp();
+    moveStopRight();
+    moveStopDown();
+    moveStopLeft();
 });
-document.getElementById("buttonRight").addEventListener("touchend", moveStopRight);
-//кнопка вниз
-document.getElementById("buttonDown").addEventListener("touchstart", () => {
-    moveDown = true;
-});
-document.getElementById("buttonDown").addEventListener("touchend", moveStopDown);
-//кнопка влево
-document.getElementById("buttonLeft").addEventListener("touchstart", () => {
-    moveLeft = true;
-});
-document.getElementById("buttonLeft").addEventListener("touchend", moveStopLeft);
+//-----------------------------------------------------------------------------
 
 //управление клавиатура ------------------------------------------------------------------
 document.addEventListener("keydown", function keyboarddown(e) { //срабатывает при наэатии кнопки

@@ -79,35 +79,3 @@
 #canvas {
   background-image: url("../img/bg.jpg");
 }
-
-.lastRow {
-  height: 60px;
-  background-color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.button {
-  height: 50px;
-  width: 23%;
-  background-color: white;
-  border: 1px solid red;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 30px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 700;
-  color: black;
-}
-
-.button:active {
-  background-color: red;
-  border: 1px solid white;
-  color: white;
-}
