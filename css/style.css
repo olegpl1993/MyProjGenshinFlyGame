@@ -18,7 +18,7 @@
 
 .topRow {
   height: 50px;
-  background-color: black;
+  background-color: #06061c;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -78,4 +78,5 @@
 
 #canvas {
   background-image: url("../img/bg.jpg");
+  background-position: center;
 }

@@ -16,7 +16,7 @@
 
 .topRow {
     height: 50px;
-    background-color: black;
+    background-color: rgb(6, 6, 28);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +33,7 @@
 }
 .topRow__qStar, .topRow__qMora {
     font-size: 40px;
-    color: white;
+    color: rgb(255, 255, 255);
     margin-left: 10px;
 }
 .topRow__mora {
@@ -63,5 +63,6 @@
 
 #canvas {
     background-image: url("../img/bg.jpg");
+    background-position: center;
 }
 
