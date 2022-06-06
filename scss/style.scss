@@ -26,12 +26,14 @@
     align-items: center;
 }
 
-.topRow__star, .topRow__mora {
+.topRow__star,
+.topRow__mora {
     width: 40px;
     height: 40px;
     margin-left: 10px;
 }
-.topRow__qStar, .topRow__qMora {
+.topRow__qStar,
+.topRow__qMora {
     font-size: 40px;
     color: rgb(255, 255, 255);
     margin-left: 10px;
@@ -65,4 +67,3 @@
     background-image: url("../img/bg.jpg");
     background-position: center;
 }
-

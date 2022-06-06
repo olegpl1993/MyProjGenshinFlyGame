@@ -39,7 +39,7 @@ else { //подключение стандартных картинок
 bgMond.src = "./img/bgMond.jpg";
 bgLiue.src = "./img/bgLiue.jpg";
 bgInad.src = "./img/bgInad.jpg";
-barrier.src = "./img/bomb.png";
+barrier.src = "./img/barier.png";
 star.src = "./img/star.png";
 mora.src = "./img/mora.png";
 
@@ -61,7 +61,7 @@ let qStars; //количество собраных звезд
 //позицыя моры
 let moras = {};
 let qmora; //количество собраной моры
-//скорость падения бомбы
+//скорость падения препятствия
 let bombSpeed;
 //управление персонажем
 let st = 0; //определяет отрисовку персонажа движения 0 ровно, 1 вправо, 2 влево
@@ -305,7 +305,7 @@ function stopGame() {
     ctx.fillStyle = 'red';
     ctx.font = `48px Verdana`;
     ctx.fillText("GAME OVER", gameWidth / 2 - 140, gameHeight / 2);
-    setTimeout(() => { ctx.clearRect(0, 0, cvs.width, cvs.height) }, 3000); //очистка фона через 3сек после каонца игры
+    setTimeout(() => { ctx.clearRect(0, 0, cvs.width, cvs.height) }, 1500); //очистка фона через 2сек после каонца игры
 }
 
 //победа, уровень пройден--------------------------------
@@ -339,7 +339,8 @@ function win() {
         ctx.fillText("Level complete", gameWidth / 2 - 130, gameHeight / 2);
         lvl = 2; //повышение уровня
         bombSpeed = 5; //скорость падения бомбы
-        setTimeout(draw, 2000); //начало нового потока игры
+        barrier.src = "./img/barier1.png"; //меняет препятствие
+        setTimeout(draw, 1500); //начало нового потока игры
     }
     else if (lvl == 2) { //конец текущего уровня-----------------
         ctx.drawImage(bgLiue, 0, 0); //отрисовка фона (очистка)
@@ -350,7 +351,8 @@ function win() {
         //установка стартовых параметров нового уровня -------------------
         lvl = 3; //повышение уровня
         bombSpeed = 10; //скорость падения бомбы
-        setTimeout(draw, 2000); //начало нового потока игры
+        barrier.src = "./img/barier2.png";  //меняет препятствие
+        setTimeout(draw, 1500); //начало нового потока игры
     }
     else { //конец текущего уровня-----------------
         ctx.drawImage(bgInad, 0, 0); //отрисовка фона (очистка)
@@ -390,8 +392,9 @@ document.querySelector(".topRow__buttonStart").addEventListener("click", () => {
     lvl = 1; // сброс уровеня игры
     fvisible = 1; //включает отрисовку текста в начале уровня
     bombSpeed = 1; //скорость падения бомбы
-    qmora = 0; //количество собраной моры
+    qmora = 0; //обнуляет количество собраной моры
     qStars = 0; //обнуляет количество собраных звезд
+    barrier.src = "./img/barier.png"; //меняет препятствие на стандартное
     //------------------------------------
     document.querySelector(".topRow__qStar").textContent = qStars; //выводит количество звезд 
     document.querySelector(".topRow__qMora").textContent = qmora; //выводит количество моры
