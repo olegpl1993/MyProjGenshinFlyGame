@@ -112,18 +112,35 @@ function moveStopLeft() {
 document.querySelector(".canvasBox").addEventListener("touchstart", (e) => { //при нажатии на сенсор
     let x = e.changedTouches[0].clientX; //отслеживает координаты
     let y = e.changedTouches[0].clientY; //отслеживает координаты
-    if (x < xPos) { //проверка направление движения
+    if (x < xPos + flyr.width / 2 && y > yPos && y < yPos + flyr.height) { //проверка направление движения
         moveLeft = true;
     }
-    if (x > xPos + flyr.width) { //проверка направление движения
+    if (x > xPos + flyr.width / 2 && y > yPos && y < yPos + flyr.height) { //проверка направление движения
         moveRight = true;
     }
-    if (y < yPos) { //проверка направление движения
+    if (y < yPos && x > xPos && x < xPos + flyr.width) { //проверка направление движения
         moveUp = true;
     }
-    if (y > yPos + flyr.height) { //проверка направление движения
+    if (y > yPos + flyr.height && x > xPos && x < xPos + flyr.width) { //проверка направление движения
         moveDown = true;
     }
+    if (x < xPos && y < yPos) { //проверка направление движения
+        moveLeft = true;
+        moveUp = true;
+    }
+    if (x > xPos + flyr.width && y < yPos) { //проверка направление движения
+        moveRight = true;
+        moveUp = true;
+    }
+    if (y > yPos + flyr.height && x < xPos) { //проверка направление движения
+        moveDown = true;
+        moveLeft = true;
+    }
+    if (y > yPos + flyr.height && x > xPos + flyr.width) { //проверка направление движения
+        moveDown = true;
+        moveRight = true;
+    }
+
 });
 cvs.addEventListener("touchend", (e) => {  //при отпуске сенсора
     //сброс направления движения
@@ -305,7 +322,16 @@ function stopGame() {
     ctx.fillStyle = 'red';
     ctx.font = `48px Verdana`;
     ctx.fillText("GAME OVER", gameWidth / 2 - 140, gameHeight / 2);
-    setTimeout(() => { ctx.clearRect(0, 0, cvs.width, cvs.height) }, 1500); //очистка фона через 2сек после каонца игры
+    //очистка фона через 1.5 сек после конца игры
+    setTimeout(() => {
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        document.querySelector(".topRow__buttonStart").style.display = "block"; //возвращает кнопку старт
+        qmora = 0; //обнуляет количество собраной моры
+        qStars = 0; //обнуляет количество собраных звезд
+        document.querySelector(".topRow__qStar").textContent = qStars; //выводит количество звезд 
+        document.querySelector(".topRow__qMora").textContent = qmora; //выводит количество моры
+        document.querySelector(".star__box").innerHTML = `<img class="topRow__star" src="img/star.png" alt="star">`; //анемокул в строке
+    }, 1500);
 }
 
 //победа, уровень пройден--------------------------------
@@ -340,6 +366,8 @@ function win() {
         lvl = 2; //повышение уровня
         bombSpeed = 5; //скорость падения бомбы
         barrier.src = "./img/barier1.png"; //меняет препятствие
+        star.src = "./img/star1.png"; //меняет звезду
+        document.querySelector(".star__box").innerHTML = `<img class="topRow__star" src="img/star1.png" alt="star">`; //геокул в строке
         setTimeout(draw, 1500); //начало нового потока игры
     }
     else if (lvl == 2) { //конец текущего уровня-----------------
@@ -352,14 +380,17 @@ function win() {
         lvl = 3; //повышение уровня
         bombSpeed = 10; //скорость падения бомбы
         barrier.src = "./img/barier2.png";  //меняет препятствие
+        star.src = "./img/star2.png"; //меняет звезду
+        document.querySelector(".star__box").innerHTML = `<img class="topRow__star" src="img/star2.png" alt="star">`; //електрокул в строке
         setTimeout(draw, 1500); //начало нового потока игры
     }
-    else { //конец текущего уровня-----------------
+    else { //конец игры (победа) -----------------
         ctx.drawImage(bgInad, 0, 0); //отрисовка фона (очистка)
-        // текст уровень пройден
+        // текст победа
         ctx.fillStyle = 'rgb(0, 255, 17)';
         ctx.font = `46px Verdana`;
         ctx.fillText("YOU WIN", gameWidth / 2 - 110, gameHeight / 2);
+        document.querySelector(".topRow__buttonStart").style.display = "block"; //возвращает кнопку старт
     }
 
 }
@@ -395,9 +426,12 @@ document.querySelector(".topRow__buttonStart").addEventListener("click", () => {
     qmora = 0; //обнуляет количество собраной моры
     qStars = 0; //обнуляет количество собраных звезд
     barrier.src = "./img/barier.png"; //меняет препятствие на стандартное
+    star.src = "./img/star.png"; //меняет звезду на стандартную
+    document.querySelector(".star__box").innerHTML = `<img class="topRow__star" src="img/star.png" alt="star">`; //анемокул в строке
     //------------------------------------
     document.querySelector(".topRow__qStar").textContent = qStars; //выводит количество звезд 
     document.querySelector(".topRow__qMora").textContent = qmora; //выводит количество моры
+    document.querySelector(".topRow__buttonStart").style.display = "none"; //убирает кнопку старт после начала игры
 
     draw(); //запускает поток игры
 });
