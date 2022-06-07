@@ -19,12 +19,13 @@ let ctx = cvs.getContext("2d"); // определяем канвас 2Д
 let flyr = new Image(); //персонаж
 let flyr1 = new Image(); //персонаж
 let flyr2 = new Image(); //персонаж
-let bgMond = new Image(); //фон для 1уровня
+let bgMond = new Image(); //фон для 1 уровня
 let bgLiue = new Image(); //фон для 2 уровня
 let bgInad = new Image(); //фон для 3 уровня
 let barrier = new Image(); //препятствие
 let star = new Image(); //звезда
 let mora = new Image(); //мора
+let fischl = new Image(); //победная картинка
 
 if (mobileMod) { //подключение мобильных картинок
     flyr.src = "./img/Sfishel.png";
@@ -42,6 +43,7 @@ bgInad.src = "./img/bgInad.jpg";
 barrier.src = "./img/barier.png";
 star.src = "./img/star.png";
 mora.src = "./img/mora.png";
+fischl.src = "./img/fischl.png";
 
 //------------------------------------------
 let lvl; //игровой уровень
@@ -386,13 +388,13 @@ function win() {
     }
     else { //конец игры (победа) -----------------
         ctx.drawImage(bgInad, 0, 0); //отрисовка фона (очистка)
+        ctx.drawImage(fischl, gameWidth / 2 - fischl.width / 2,  gameHeight / 2 - fischl.height / 2); //победаная картинка
         // текст победа
-        ctx.fillStyle = 'rgb(0, 255, 17)';
+        ctx.fillStyle = 'rgb(247, 95, 255)';
         ctx.font = `46px Verdana`;
-        ctx.fillText("YOU WIN", gameWidth / 2 - 110, gameHeight / 2);
+        ctx.fillText("YOU WIN", gameWidth / 2 - 110, gameHeight / 2 - fischl.height / 2);
         document.querySelector(".topRow__buttonStart").style.display = "block"; //возвращает кнопку старт
     }
-
 }
 
 //старт игры, сбрасывает все переменные на начальные -------------------------
