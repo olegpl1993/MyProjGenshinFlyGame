@@ -1,1 +1,1 @@
-# deploy https://olegpl1993.github.io/MyProjGenshinFlyGame/
+# deploy: https://olegpl1993.github.io/MyProjGenshinFlyGame/
